@@ -1,0 +1,6 @@
+*.diff
+_*.ignore
+*~
+.DS_Store
+nohup.out
+/_site

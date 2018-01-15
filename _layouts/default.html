@@ -1,0 +1,64 @@
+{% capture build_version %}{{ site.time | date: "%Y%m%d%H%M%S" }}{% endcapture %}<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% if page.title %}{{ page.title }} &mdash; {% endif %}Font Control</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://rsms.me/inter/inter-ui.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" media="all" href="/r/style.css?v={{ build_version }}" type="text/css">
+    <link rel="shortcut icon" href="/favicon.ico?v={{ build_version }}">
+    <link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg?v={{ build_version }}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@rsms">
+    {% if page.title %}
+    <meta property="og:title" content="{{ page.title }}">
+    <meta name="twitter:title" content="{{ page.title }}">
+    {% if page.description %}
+    <meta name="description" content="{{ page.description }}">
+    <meta name="og:description" content="{{ page.description }}">
+    <meta name="twitter:description" content="{{ page.description }}">
+    {% else if content %}
+    <meta name="description" content="{{ content | strip_html | truncatewords: 25 }}">
+    <meta name="og:description" content="{{ content | strip_html | truncatewords: 25 }}">
+    <meta name="twitter:description" content="{{ content | strip_html | truncatewords: 25 }}">
+    {% endif %}
+    {% else %}
+    <meta name="description" content="Font Control package manager">
+    {% endif %}
+    {% if page.og_image_url %}
+    <meta property="og:image" content="{{ page.og_image_url }}">
+    <meta name="twitter:image" content="{{ page.og_image_url }}">
+    {% endif %}
+    <meta property="og:url" content="https://fontctrl.org{{ page.url | remove_first:'index.html' }}">
+    <meta property="og:site_name" content="fontctrl.org">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="en_US" />
+  </head>
+  <body>
+    <section class="header">
+      <div>
+        <h1><a href="/">{% include icons/fontctrl.svg %}fontctrl</a></h1>
+        <ul>
+          <!--li><a href="/install/"{% if page.url contains "/install/" %}class="active"{% endif %}>Installing</a></li-->
+          <li><a href="/publish/"{% if page.url contains "/publish/" %}class="active"{% endif %}>Publishing</a></li>
+          <li><a href="/about/"{% if page.url contains "/about/" %}class="active"{% endif %}>About</a></li>
+          <li><a href="https://github.com/rsms/fontctrl">Source code</a></li>
+        </ul>
+      </div>
+    </section>
+
+    {{ content }}
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112478509-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-112478509-1');
+    </script>
+    {% include autoreload-in-debug.html %}
+  </body>
+</html>
