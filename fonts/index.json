@@ -2,7 +2,7 @@
   "fonts": {
     "inter-ui": {
       "name": "Inter UI",
-      "versions": [ "2.3.0" ]
+      "versions": [ "2.3.0", "2.3.0-beta" ]
     }
   }
 }

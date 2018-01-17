@@ -1,6 +1,6 @@
-@viewport {
+/*@viewport {
   width: device-width;
-}
+}*/
 
 * { margin:0; padding:0; font-family:inherit; }
 body {
@@ -100,6 +100,7 @@ section {
     max-width: 800px;
     margin:0 20px;
     flex: 1 1 100%;
+    overflow: hidden; /* required for correct flex constraints */
   }
   section > * > h2:first-child { margin-top:0; }
 
@@ -110,6 +111,7 @@ section {
   color: #aaa;
   height: 80px;
   position: fixed; left:0; top:0; right:0;
+  z-index:2;
 }
 body { margin-top: 80px; }
 .header, .header * { cursor: default; }
@@ -210,10 +212,15 @@ section.content { padding-top:40px; }
   section.content *[align="right"] { margin:0 0 1em 1.5em; }
   section.content *[align="left"] { margin:0 1.5em 1em 0; }
 
-  section.content li { margin-left: 2em; margin-bottom:0.5em; }
-    section.content ul > li { margin-left:1.4em; }
-  section.content ul.minimal { list-style:none; }
-    section.content ul.minimal > li { margin-left:0; }
+  section.content ul,
+  section.content ol { margin-bottom: 1.2em; }
+  section.content li { margin-left: 0; margin-bottom: 0.8em; }
+  /*section.content ul > li,
+  section.content ol > li { margin-left: 1em; }*/
+  section.content ul ul > li,
+  section.content ol ul > li,
+  section.content ol ol > li,
+  section.content ul ol > li { margin-left: 0.5em; }
 
   section.content blockquote {
     border-left:4px solid #ddd;
@@ -234,6 +241,10 @@ section.content { padding-top:40px; }
     border-radius: 0;
   }
 
+  section.content code, section.content pre {
+    word-wrap: break-word;
+  }
+
   section.content pre {
     line-height:1.25;
     overflow-x: auto;
@@ -242,7 +253,7 @@ section.content { padding-top:40px; }
   }
   
   section.content code {
-    padding:3px 0;
+    padding: 3px 0;
   }
   section.content code::before,
   section.content code::after {
